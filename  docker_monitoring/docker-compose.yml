@@ -1,0 +1,27 @@
+services:
+  fluentd:
+    image: fluent/fluentd
+    build:
+      context: docker/fluentd/
+      dockerfile: Dockerfile
+    links:
+      - "elasticsearch"
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+    expose:
+      - 24224
+
+  elasticsearch:
+    image: elasticsearch:6.5.0
+    expose:
+      - 9200
+    ports:
+      - "9200:9200"
+
+  kibana:
+    image: kibana:6.5.0
+    links:
+      - "elasticsearch"
+    ports:
+      - "5601:5601"
