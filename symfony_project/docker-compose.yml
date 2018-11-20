@@ -8,6 +8,9 @@ services:
       - './:/app'
     ports:
       - '8081:80'
+    networks:
+      default: {}
+      sf_monitoring: {}
 
   php:
     build:
