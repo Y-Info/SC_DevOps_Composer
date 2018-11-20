@@ -6,11 +6,11 @@ services:
     build:
       context: docker/fluentd/
       dockerfile: Dockerfile
-    links:
-      - "elasticsearch"
     networks:
-      default: {}
-      sf_monitoring: {}
+      default:
+      sf_monitoring:
+        aliases: [fluentd]
+
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.4.3
